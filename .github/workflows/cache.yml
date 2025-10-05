@@ -17,15 +17,17 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: cache-d2bb490
+          restore-keys: |
+            cache-d2bb490
+
+      - name: Install dependencies
+        run: npm install
 
       - name: prime-cache-d2bb490
-        run: echo "Cache hit: ${{ steps.cache.outputs.cache-hit }}"
+        run: echo "Cache hit:${{ steps.cache.outputs.cache-hit }}"
