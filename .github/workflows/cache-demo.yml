@@ -29,5 +29,5 @@ jobs:
         run: npm install
 
       - name: Print cache hit/miss
-        run: echo "Cache hit: ${{ steps.cache.outputs.cache-hit }}"
+        run: echo "Cache hit:${{ steps.cache.outputs.cache-hit }}"
 
