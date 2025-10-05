@@ -26,12 +26,12 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: cache-d2bb490
+          key: npm-cache-${{ hashFiles('package-lock.json') }}
 
       # 4. Install dependencies
       - name: Install dependencies
         run: npm install
 
       # 5. Print cache hit/miss
-      - name: prime-cache-d2bb490
+      - name: Show cache status
         run: echo "Cache hit:${{ steps.cache.outputs.cache-hit }}"
