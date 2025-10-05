@@ -1,3 +1,4 @@
+# File: .github/workflows/cache-demo.yml
 name: Cache Demo
 
 on:
@@ -8,26 +9,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # 1. Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Cache dependencies
+      # 3. Cache npm dependencies
+      - name: Cache npm dependencies
         id: cache
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: cache-d2bb490
-          restore-keys: |
-            cache-d2bb490
 
+      # 4. Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # 5. Print cache hit/miss
       - name: prime-cache-d2bb490
         run: echo "Cache hit:${{ steps.cache.outputs.cache-hit }}"
